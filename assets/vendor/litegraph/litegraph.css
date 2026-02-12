@@ -1,0 +1,6 @@
+/* Local lightweight LiteGraph fallback styles */
+.graphcanvas,
+.lgraphcanvas,
+.shader-builder-graph-canvas {
+	background: #070a12;
+}
