@@ -1,104 +1,116 @@
-# ParticleUniverse
+<div align="center">
 
-Real-time creative playground for particles, model-driven FX, and node-based shaders built with Three.js.
+# ✨ ParticleUniverse
 
-[Live Demo](https://leatherfire.github.io/particle-universe/) · [Contributing Guide](CONTRIBUTING.md) · [MIT License](LICENSE)
+### Real-time particle, VFX, model-based FX, and node-shader playground built with Three.js
 
-## Highlights
+<p>
+  <a href="https://leatherfire.github.io/particle-universe/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-Open%20Now-22c55e?style=for-the-badge&logo=githubpages&logoColor=white"></a>
+  <a href="https://github.com/LeatherFire/particle-universe"><img alt="Repository" src="https://img.shields.io/badge/GitHub-Repository-111827?style=for-the-badge&logo=github"></a>
+  <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-0ea5e9?style=for-the-badge"></a>
+  <img alt="Node" src="https://img.shields.io/badge/Node.js-18%2B-16a34a?style=for-the-badge&logo=node.js&logoColor=white">
+  <img alt="Backend" src="https://img.shields.io/badge/Backend-Auto%20%7C%20WebGPU%20%7C%20WebGL-7c3aed?style=for-the-badge">
+</p>
 
-- Four production-focused modes in one app:
-  - `Core`
-  - `VFX Lab`
-  - `Model FX`
-  - `Shader Builder`
-- Stable backend routing with graceful fallback (`auto`, `webgpu`, `webgl`)
-- Shader Builder with blueprint workflow (`Blueprint` / `Result`)
-- Advanced multi-pass post FX pipeline for cinematic shaders
-- Local LiteGraph vendor bundle (no CDN dependency)
+<p>
+  <a href="https://leatherfire.github.io/particle-universe/">Live App</a>
+  ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+  ·
+  <a href="docs/QA_BENCHMARK.md">QA & Benchmark</a>
+</p>
 
-## Live Demo
+</div>
 
-- Production URL: [https://leatherfire.github.io/particle-universe/](https://leatherfire.github.io/particle-universe/)
+---
 
-## Modes
+## Why People Like It
 
-### Core
+- Fast visual feedback: change parameters and instantly see the result.
+- Creative range in one tool: production particles, stylized VFX, model-to-particle effects, and shader graph editing.
+- Stable runtime behavior: automatic backend fallback prevents broken startup on unsupported systems.
+- Creator workflow ready: preset-based exploration plus advanced controls for deeper art direction.
 
-Production-safe particle presets with complete emitter, force, appearance, and post-processing controls.
+## Core Modes
 
-### VFX Lab
+| Mode | What it does | Best for |
+|---|---|---|
+| `Core` | Stable, production-safe particle presets with full emitter/force/appearance controls | Daily use, reliable visuals |
+| `VFX Lab` | Heavier, stylized visual profiles | Cinematic/experimental looks |
+| `Model FX` | Turns uploaded `.glb/.gltf` forms into particle-driven motion | Logo/model reveals |
+| `Shader Builder` | Node-based shader authoring (`Blueprint` + `Result`) without manual GLSL writing | Custom real-time materials/effects |
 
-Stylized presets with stronger visual direction and heavier FX profiles.
+## Try It In 60 Seconds
 
-### Model FX
-
-Converts uploaded `.glb/.gltf` shapes into animated particle-form compositions.
-
-### Shader Builder
-
-Node-based shader authoring without writing GLSL manually.
-
-- `Blueprint` view: graph editing
-- `Result` view: live preview + compiled shader output
-- save/load/import/export graph workflow
-
-## Backend Behavior
-
-Backend is controlled by URL query:
-
-- `?backend=auto` (default): tries WebGPU, falls back to WebGL if needed
-- `?backend=webgpu`: forces WebGPU path
-- `?backend=webgl`: forces WebGL compatibility path
-
-Runtime backend state is always visible in the bottom status bar.
-
-## Quick Start
-
-### Requirements
-
-- Node.js `18+` (Node.js `20+` recommended)
-- A modern Chromium-based browser for best compatibility
-
-### Install & Run
+### 1) Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open locally:
+Open: [http://127.0.0.1:5173](http://127.0.0.1:5173)
 
-- [http://127.0.0.1:5173](http://127.0.0.1:5173)
+### 2) Switch backend when needed
 
-## QA and Benchmark URLs
+- `?backend=auto` (default): tries WebGPU, falls back to WebGL
+- `?backend=webgpu`: force WebGPU
+- `?backend=webgl`: force compatibility mode
 
-### Demo
+Example:
+
+- `http://127.0.0.1:5173/?backend=webgl`
+
+## Feature Highlights
+
+### Particle System
+
+- Preset-driven workflow with real-time tweaking
+- Rich emitter + force + appearance controls
+- Gradient and curve-driven lifetime behavior
+
+### Shader Builder
+
+- Blueprint workflow for graph-based shader logic
+- `Result` panel with live output + compiled shader source
+- Save/load/delete, plus JSON import/export
+- Multi-pass post FX pipeline in advanced graph paths
+
+### Runtime & Stability
+
+- Backend status shown in-app (`FPS`, `Particles`, `Backend`)
+- Safe fallback behavior for WebGPU-unavailable environments
+- Local LiteGraph vendor runtime (no CDN dependency)
+
+## QA / Demo / Benchmark URLs
+
+### Demo sets
 
 - `?demo=1&demoSet=core`
 - `?demo=1&demoSet=vfxLab`
 - `?demo=1&demoSet=modelFx`
 - `?demo=1&demoSet=shaderBuilder`
 
-### Benchmark
+### Bench sets
 
 - `?bench=1&benchSet=all`
 - `?bench=1&benchSet=modelFx&benchDurationMs=7000`
 
-Benchmark results are available in `window.__PARTICLE_BENCHMARK__` and printed with `console.table(...)`.
+Benchmark output is available at `window.__PARTICLE_BENCHMARK__` and printed with `console.table(...)`.
 
-## NPM Scripts
+## Scripts
 
-| Command | Description |
+| Command | Purpose |
 |---|---|
-| `npm run dev` | Start local dev server (`127.0.0.1:5173`) |
-| `npm run start` | Alias for `npm run dev` |
-| `npm run check` | JavaScript syntax validation |
-| `npm run test` | Run test suite (`node:test`) |
-| `npm run check:all` | Run checks + tests |
-| `npm run qa:urls` | Print QA/demo/benchmark URL set |
-| `npm run report:release` | Generate release-facing preset report |
+| `npm run dev` | Start local server (`127.0.0.1:5173`) |
+| `npm run start` | Alias of `dev` |
+| `npm run check` | Syntax check |
+| `npm run test` | Test suite (`node:test`) |
+| `npm run check:all` | Check + test |
+| `npm run qa:urls` | Print QA/demo/benchmark URLs |
+| `npm run report:release` | Generate release-oriented preset report |
 
-## Project Structure
+## Project Layout
 
 ```text
 assets/
@@ -127,14 +139,15 @@ style.css
 
 ## Deployment
 
-This project is deployed with GitHub Pages from the `main` branch.
+GitHub Pages (from `main`):
 
-- Live URL: [https://leatherfire.github.io/particle-universe/](https://leatherfire.github.io/particle-universe/)
+- [https://leatherfire.github.io/particle-universe/](https://leatherfire.github.io/particle-universe/)
 
 ## Troubleshooting
 
-- If `webgpu` fails on your device, switch to `?backend=webgl`.
-- If Shader Builder graph editor does not load, hard refresh once and verify `assets/vendor/litegraph/litegraph.min.js` is reachable.
+- If WebGPU fails on your device, open with `?backend=webgl`.
+- If Shader Builder graph UI does not load, hard-refresh and ensure this file is reachable:
+  - `assets/vendor/litegraph/litegraph.min.js`
 
 ## Contributing
 
@@ -142,4 +155,4 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE).
+MIT License. See [LICENSE](LICENSE).
