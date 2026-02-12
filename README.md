@@ -5,15 +5,15 @@
 ### Real-time particle, VFX, model-based FX, and node-shader playground built with Three.js
 
 <p>
-  <a href="https://leatherfire.github.io/particle-universe/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-Open%20Now-22c55e?style=for-the-badge&logo=githubpages&logoColor=white"></a>
-  <a href="https://github.com/LeatherFire/particle-universe"><img alt="Repository" src="https://img.shields.io/badge/GitHub-Repository-111827?style=for-the-badge&logo=github"></a>
+  <a href="https://leatherfire.github.io/Particle-Universe/"><img alt="Live Demo" src="https://img.shields.io/badge/Live%20Demo-Open%20Now-22c55e?style=for-the-badge&logo=githubpages&logoColor=white"></a>
+  <a href="https://github.com/LeatherFire/Particle-Universe"><img alt="Repository" src="https://img.shields.io/badge/GitHub-Repository-111827?style=for-the-badge&logo=github"></a>
   <a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/License-MIT-0ea5e9?style=for-the-badge"></a>
   <img alt="Node" src="https://img.shields.io/badge/Node.js-18%2B-16a34a?style=for-the-badge&logo=node.js&logoColor=white">
   <img alt="Backend" src="https://img.shields.io/badge/Backend-Auto%20%7C%20WebGPU%20%7C%20WebGL-7c3aed?style=for-the-badge">
 </p>
 
 <p>
-  <a href="https://leatherfire.github.io/particle-universe/">Live App</a>
+  <a href="https://leatherfire.github.io/Particle-Universe/">Live App</a>
   ·
   <a href="CONTRIBUTING.md">Contributing</a>
   ·
@@ -141,7 +141,7 @@ style.css
 
 GitHub Pages (from `main`):
 
-- [https://leatherfire.github.io/particle-universe/](https://leatherfire.github.io/particle-universe/)
+- [https://leatherfire.github.io/Particle-Universe/](https://leatherfire.github.io/Particle-Universe/)
 
 ## Troubleshooting
 
