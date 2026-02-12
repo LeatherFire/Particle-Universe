@@ -1,170 +1,145 @@
 # ParticleUniverse
 
-Real-time GPU particle and shader playground built with Three.js.
+Real-time creative playground for particles, model-driven FX, and node-based shaders built with Three.js.
 
-ParticleUniverse provides four creative modes in one app:
+[Live Demo](https://leatherfire.github.io/particle-universe/) · [Contributing Guide](CONTRIBUTING.md) · [MIT License](LICENSE)
 
-- `Core` for production-safe particle presets
-- `VFX Lab` for stylized, heavier visual effects
-- `Model FX` for GLB/GLTF to particle-form workflows
-- `Shader Builder` for no-code, node-based shader authoring
+## Highlights
 
-## Why This Project
+- Four production-focused modes in one app:
+  - `Core`
+  - `VFX Lab`
+  - `Model FX`
+  - `Shader Builder`
+- Stable backend routing with graceful fallback (`auto`, `webgpu`, `webgl`)
+- Shader Builder with blueprint workflow (`Blueprint` / `Result`)
+- Advanced multi-pass post FX pipeline for cinematic shaders
+- Local LiteGraph vendor bundle (no CDN dependency)
 
-This project is designed as a practical creative tool, not just a demo scene.
+## Live Demo
 
-Key goals:
+- Production URL: [https://leatherfire.github.io/particle-universe/](https://leatherfire.github.io/particle-universe/)
 
-- stable default startup (`WebGL` compatibility path)
-- graceful backend behavior (`webgpu`, `webgl`, `auto`)
-- visually rich presets with interactive controls
-- creator workflow features (save/load/import/export graphs)
-
-## Feature Overview
-
-### Runtime and Backends
-
-- Backend routing via URL:
-  - `?backend=webgl`
-  - `?backend=webgpu`
-  - `?backend=auto`
-- Automatic compatibility fallback when WebGPU initialization fails
-- Runtime status in the bottom bar (`Backend`, `FPS`, `Particles`)
+## Modes
 
 ### Core
 
-- curated production-safe particle presets
-- emitter/forces/appearance controls
-- gradient and curve editing
-- screenshot and recording actions
+Production-safe particle presets with complete emitter, force, appearance, and post-processing controls.
 
 ### VFX Lab
 
-- advanced stylized preset set
-- stronger post-processing profiles
-- visual-first variants while preserving app stability
+Stylized presets with stronger visual direction and heavier FX profiles.
 
 ### Model FX
 
-- upload `.glb` / `.gltf` and convert model form to particle targets
-- demo geometry paths included (procedural)
-- dedicated panel controls for model sampling and motion behavior
+Converts uploaded `.glb/.gltf` shapes into animated particle-form compositions.
 
 ### Shader Builder
 
-- UE-style blueprint workflow with node graph editor
-- `Blueprint` and `Result` views
-- local LiteGraph vendor integration (no CDN dependency required)
-- save/load/delete graph presets
-- import/export JSON graphs
-- texture input slots (`Texture A`, `Texture B`)
-- advanced node pack and multi-pass post-FX pipeline
+Node-based shader authoring without writing GLSL manually.
 
-## Requirements
+- `Blueprint` view: graph editing
+- `Result` view: live preview + compiled shader output
+- save/load/import/export graph workflow
 
-- Node.js `18+` (Node.js `20+` recommended)
-- modern Chromium-based browser recommended
-- WebGPU-capable browser/GPU only if you want explicit `?backend=webgpu`
+## Backend Behavior
+
+Backend is controlled by URL query:
+
+- `?backend=auto` (default): tries WebGPU, falls back to WebGL if needed
+- `?backend=webgpu`: forces WebGPU path
+- `?backend=webgl`: forces WebGL compatibility path
+
+Runtime backend state is always visible in the bottom status bar.
 
 ## Quick Start
+
+### Requirements
+
+- Node.js `18+` (Node.js `20+` recommended)
+- A modern Chromium-based browser for best compatibility
+
+### Install & Run
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open:
+Open locally:
 
-- [http://localhost:5173](http://localhost:5173)
+- [http://127.0.0.1:5173](http://127.0.0.1:5173)
 
-Default launch target is stable local compatibility behavior.
+## QA and Benchmark URLs
 
-## URL Parameters
+### Demo
 
-### Backend
+- `?demo=1&demoSet=core`
+- `?demo=1&demoSet=vfxLab`
+- `?demo=1&demoSet=modelFx`
+- `?demo=1&demoSet=shaderBuilder`
 
-- `?backend=webgl` force compatibility renderer
-- `?backend=webgpu` force WebGPU path (fails fast if unsupported)
-- `?backend=auto` attempt WebGPU then fallback when needed
+### Benchmark
 
-### Runtime QA
+- `?bench=1&benchSet=all`
+- `?bench=1&benchSet=modelFx&benchDurationMs=7000`
 
-- Demo mode:
-  - `?demo=1`
-  - `?demo=1&demoSet=core`
-  - `?demo=1&demoSet=vfxLab`
-  - `?demo=1&demoSet=modelFx`
-  - `?demo=1&demoSet=shaderBuilder`
-- Benchmark mode:
-  - `?bench=1&benchSet=all`
-  - `?bench=1&benchSet=modelFx&benchDurationMs=7000`
-
-Benchmark results are exposed in `window.__PARTICLE_BENCHMARK__` and printed with `console.table(...)`.
+Benchmark results are available in `window.__PARTICLE_BENCHMARK__` and printed with `console.table(...)`.
 
 ## NPM Scripts
 
-- `npm run dev`: local static dev server on `127.0.0.1:5173`
-- `npm run start`: alias of `dev`
-- `npm run check`: JavaScript syntax validation
-- `npm run check:syntax`: alias of `check`
-- `npm run test`: test suite (`node:test`)
-- `npm run check:all`: run `check` + `test`
-- `npm run qa:urls`: print manual QA / benchmark URL set
-- `npm run report:release`: release-facing preset report
+| Command | Description |
+|---|---|
+| `npm run dev` | Start local dev server (`127.0.0.1:5173`) |
+| `npm run start` | Alias for `npm run dev` |
+| `npm run check` | JavaScript syntax validation |
+| `npm run test` | Run test suite (`node:test`) |
+| `npm run check:all` | Run checks + tests |
+| `npm run qa:urls` | Print QA/demo/benchmark URL set |
+| `npm run report:release` | Generate release-facing preset report |
 
 ## Project Structure
 
 ```text
 assets/
-  models/demo/          Model FX attribution and demo assets
-  vendor/litegraph/     Local LiteGraph runtime (no CDN dependency)
+  models/demo/          Demo model assets and attribution notes
+  vendor/litegraph/     Local LiteGraph runtime
 js/
-  emitters/             Emitter behaviors
-  fallback/             WebGL compatibility particle system
-  forces/               Force field logic
-  model/                Model FX system
+  emitters/             Emitter behavior systems
+  fallback/             WebGL compatibility systems
+  forces/               Force logic
+  model/                Model FX runtime
   presets/              Preset library and manager
-  rendering/            Render and post-processing managers
-  shaderbuilder/        Shader Builder compiler/system/templates/store
+  rendering/            Renderer and post-processing managers
+  shaderbuilder/        Graph compiler/system/templates/store
   ui/                   Panels and editors
-  utils/                Capture + shared utilities
-  vfx/                  VFX Lab implementations
+  utils/                Shared utilities
+  vfx/                  VFX Lab systems
 scripts/
   dev-server.mjs
   check-syntax.mjs
   qa-urls.mjs
   release-report.mjs
 tests/
-  *.test.mjs
 index.html
 style.css
 ```
 
-## Development Notes
+## Deployment
 
-- Keep Core defaults stable first; add aggressive visuals as opt-in modes
-- Prefer incremental changes over large rewrites
-- Validate both:
-  - a normal user flow (`http://localhost:5173`)
-  - at least one forced backend flow (`?backend=webgl` or `?backend=webgpu`)
+This project is deployed with GitHub Pages from the `main` branch.
 
-## Roadmap and Progress
+- Live URL: [https://leatherfire.github.io/particle-universe/](https://leatherfire.github.io/particle-universe/)
 
-- long-term ideas: `/Users/leatherfire/3d_particul_system/ILERIDE_YAPILACAKLAR.txt`
-- implementation progress log: `/Users/leatherfire/3d_particul_system/GELISIM_ILERLEME.md`
+## Troubleshooting
+
+- If `webgpu` fails on your device, switch to `?backend=webgl`.
+- If Shader Builder graph editor does not load, hard refresh once and verify `assets/vendor/litegraph/litegraph.min.js` is reachable.
 
 ## Contributing
 
-See `/Users/leatherfire/3d_particul_system/CONTRIBUTING.md`.
-
-## Attribution
-
-Model demo attribution notes are in:
-
-- `/Users/leatherfire/3d_particul_system/assets/models/demo/ATTRIBUTION.md`
+Please read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-This project is licensed under the MIT License.
-
-See `/Users/leatherfire/3d_particul_system/LICENSE`.
+This project is licensed under the MIT License. See [LICENSE](LICENSE).

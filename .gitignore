@@ -27,6 +27,7 @@ reports/
 benchmark-output/
 screenshots/
 recordings/
+docs/images/
 
 # Build output
 dist/
@@ -53,3 +54,7 @@ Desktop.ini
 
 # Local app state
 .claude/
+
+# Local planning / private notes
+ILERIDE_YAPILACAKLAR.txt
+GELISIM_ILERLEME.md
